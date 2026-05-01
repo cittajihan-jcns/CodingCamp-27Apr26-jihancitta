@@ -272,10 +272,11 @@ header[role="banner"]::after {
 
 #user-greeting {
   font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+  color: #ffffff;
   margin-bottom: var(--spacing-xs);
   min-height: 1.4em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 /* ── 7. Header Action Buttons ───────────────────────────────── */
@@ -824,10 +825,11 @@ form button:focus-visible {
 /* ── 24. User Greeting & Header Actions ─────────────────────── */
 #user-greeting {
   font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-text-secondary);
+  font-weight: 700;
+  color: #ffffff;
   margin-bottom: var(--spacing-xs);
   min-height: 1.4em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .header-actions {
