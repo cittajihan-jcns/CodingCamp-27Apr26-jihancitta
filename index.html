@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/expense.css" />
+</head>
+<body>
+
+  <!-- Modal Nama Pengguna -->
+  <div id="username-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-box">
+      <h2 id="modal-title">👋 Selamat Datang!</h2>
+      <p>Bisa sebutin nama kamu?.</p>
+      <form id="username-form" novalidate>
+        <div class="form-group">
+          <label for="input-username">Nama Kamu</label>
+          <input
+            type="text"
+            id="input-username"
+            placeholder="Contoh: Budi"
+            autocomplete="name"
+            aria-required="true"
+            maxlength="30"
+          />
+        </div>
+        <p id="username-error" role="alert" aria-live="assertive" class="error-message"></p>
+        <button type="submit">Mulai →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Storage Warning Banner (hidden by default) -->
+  <div id="storage-warning" role="alert" aria-live="polite" hidden>
+    ⚠ Penyimpanan lokal tidak tersedia. Data tidak akan disimpan.
+  </div>
+
+  <!-- HEADER -->
+  <header role="banner">
+    <!-- Balance Display -->
+    <section id="balance-display" aria-label="Total pengeluaran">
+      <p id="user-greeting" aria-live="polite"></p>
+      <h1>Total Pengeluaran</h1>
+      <p id="balance-amount" aria-live="polite" aria-atomic="true">Rp 0</p>
+    </section>
+
+    <div class="header-actions">
+      <!-- Edit Nama -->
+      <button id="edit-username-btn" type="button" aria-label="Ubah nama pengguna" title="Ubah nama">
+        ✏️
+      </button>
+      <!-- Dark/Light Mode Toggle -->
+      <button id="theme-toggle" type="button" aria-label="Ganti ke mode gelap">
+        🌙 Mode Gelap
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main role="main">
+
+    <!-- Transaction Input Form -->
+    <section aria-labelledby="form-heading">
+      <h2 id="form-heading">Tambah Pengeluaran</h2>
+      <form id="transaction-form" novalidate aria-label="Form tambah transaksi">
+        <div class="form-group">
+          <label for="input-name">Nama Item</label>
+          <input
+            type="text"
+            id="input-name"
+            name="name"
+            placeholder="Contoh: Makan siang"
+            autocomplete="off"
+            aria-required="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="input-amount">Jumlah (Rp)</label>
+          <input
+            type="number"
+            id="input-amount"
+            name="amount"
+            placeholder="Contoh: 25000"
+            min="1"
+            step="any"
+            aria-required="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="input-category">Kategori</label>
+          <select id="input-category" name="category" aria-required="true">
+            <option value="">-- Pilih Kategori --</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+        </div>
+
+        <button type="submit" aria-label="Tambah transaksi">Tambah</button>
+
+        <p id="form-error" role="alert" aria-live="assertive" class="error-message"></p>
+      </form>
+    </section>
+
+    <!-- Sort Controls + Transaction List -->
+    <section aria-labelledby="list-heading">
+      <h2 id="list-heading">Riwayat Transaksi</h2>
+
+      <div class="sort-controls">
+        <label for="sort-select">Urutkan:</label>
+        <select id="sort-select" aria-label="Pilihan urutan transaksi">
+          <option value="">Default</option>
+          <option value="asc">Jumlah ↑ (Terkecil)</option>
+          <option value="desc">Jumlah ↓ (Terbesar)</option>
+          <option value="cat">Kategori A–Z</option>
+        </select>
+      </div>
+
+      <ul
+        id="transaction-list"
+        role="list"
+        aria-label="Daftar transaksi"
+        aria-live="polite"
+        aria-relevant="additions removals"
+      ></ul>
+
+      <p id="empty-state" aria-live="polite">
+        Belum ada transaksi. Tambahkan pengeluaran pertama Anda!
+      </p>
+    </section>
+
+    <!-- Spending Chart -->
+    <section aria-labelledby="chart-heading">
+      <h2 id="chart-heading">Distribusi Pengeluaran</h2>
+      <div class="chart-container" role="img" aria-label="Pie chart distribusi pengeluaran per kategori">
+        <canvas id="spending-chart" aria-label="Pie chart pengeluaran per kategori"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== ADDITIONAL SECTIONS ===== -->
+
+  <!-- Ringkasan Bulanan -->
+  <section aria-labelledby="monthly-heading">
+    <h2 id="monthly-heading">📅 Ringkasan Bulanan</h2>
+    <p id="monthly-empty" class="limits-empty-state">Belum ada transaksi untuk ditampilkan.</p>
+    <div id="monthly-summary-content" style="display:none">
+      <!-- Bar Chart -->
+      <div class="monthly-chart-container">
+        <canvas id="monthly-chart" aria-label="Bar chart pengeluaran per bulan"></canvas>
+      </div>
+      <!-- Tabel -->
+      <table class="monthly-table" aria-label="Tabel ringkasan pengeluaran bulanan">
+        <thead>
+          <tr>
+            <th>Bulan</th>
+            <th>Transaksi</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="monthly-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Custom Category Manager -->
+  <section aria-labelledby="category-heading">
+    <h2 id="category-heading">Kelola Kategori</h2>
+    <form id="category-form" novalidate aria-label="Form tambah kategori baru">
+      <div class="form-group">
+        <label for="input-new-category">Nama Kategori Baru</label>
+        <input
+          type="text"
+          id="input-new-category"
+          name="new-category"
+          placeholder="Contoh: Kesehatan"
+          autocomplete="off"
+          aria-required="true"
+        />
+      </div>
+
+      <button type="submit" aria-label="Simpan kategori baru">Tambah Kategori</button>
+
+      <p id="category-error" role="alert" aria-live="assertive" class="error-message"></p>
+    </form>
+  </section>
+
+  <!-- Spending Limit Manager -->
+  <section aria-labelledby="limit-heading">
+    <h2 id="limit-heading">Atur Batas Pengeluaran</h2>
+
+    <!-- Form set batas -->
+    <form id="limit-form" novalidate aria-label="Form atur batas pengeluaran per kategori">
+      <div class="form-group">
+        <label for="limit-category">Kategori</label>
+        <select id="limit-category" name="limit-category" aria-required="true">
+          <option value="">-- Pilih Kategori --</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Fun">Fun</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="limit-amount">Batas Jumlah (Rp)</label>
+        <input
+          type="number"
+          id="limit-amount"
+          name="limit-amount"
+          placeholder="Contoh: 500000"
+          min="1"
+          step="any"
+          aria-required="true"
+        />
+      </div>
+
+      <button type="submit" aria-label="Simpan batas pengeluaran">Simpan Batas</button>
+      <p id="limit-error" role="alert" aria-live="assertive" class="error-message"></p>
+    </form>
+
+    <!-- Panel monitor semua batas aktif -->
+    <div id="limits-monitor" aria-label="Daftar batas pengeluaran aktif">
+      <h3>Batas Aktif</h3>
+      <ul id="limits-list" role="list" aria-label="Daftar batas aktif"></ul>
+      <p id="limits-empty" class="limits-empty-state">Belum ada batas yang diatur.</p>
+    </div>
+  </section>
+
+  <!-- Toast Warning (over-limit notification) -->
+  <div id="limit-toast" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+    <span id="limit-toast-message"></span>
+    <button id="limit-toast-close" type="button" aria-label="Tutup notifikasi">×</button>
+  </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- App Script -->
+  <script defer src="js/expense.js"></script>
+
+</body>
+</html>
