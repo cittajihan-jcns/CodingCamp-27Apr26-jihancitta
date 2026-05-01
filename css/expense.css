@@ -1,33 +1,35 @@
 /* ============================================================
-   Expense & Budget Visualizer — Main Stylesheet
-   Mobile-first, CSS custom properties, dark mode via body.dark
+   Expense & Budget Visualizer — Stylesheet (Redesign)
+   Tema: Hijau Teal Modern | Mobile-first | Dark mode via body.dark
    ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 /* ── 1. CSS Custom Properties (Light Mode) ─────────────────── */
 :root {
   /* Text */
-  --color-text-primary:   #1a1a2e;
-  --color-text-secondary: #555e6d;
-  --color-text-muted:     #8a94a6;
+  --color-text-primary:   #0f2027;
+  --color-text-secondary: #4a5568;
+  --color-text-muted:     #94a3b8;
   --color-text-inverse:   #ffffff;
 
   /* Backgrounds */
-  --color-bg-page:        #f0f2f7;
+  --color-bg-page:        #f0faf8;
   --color-bg-card:        #ffffff;
-  --color-bg-input:       #ffffff;
-  --color-bg-item:        #f8f9fc;
-  --color-bg-item-hover:  #eef0f6;
+  --color-bg-input:       #f8fffe;
+  --color-bg-item:        #f0faf8;
+  --color-bg-item-hover:  #e0f5f0;
 
   /* Borders & Shadows */
-  --color-border:         #dde1ea;
-  --color-border-focus:   #4a6cf7;
-  --color-shadow:         rgba(0, 0, 0, 0.08);
-  --color-shadow-card:    0 4px 20px rgba(0, 0, 0, 0.08);
+  --color-border:         #b2dfdb;
+  --color-border-focus:   #00897b;
+  --color-shadow:         rgba(0, 137, 123, 0.08);
+  --color-shadow-card:    0 4px 24px rgba(0, 137, 123, 0.10);
 
-  /* Accent / Primary */
-  --color-primary:        #4a6cf7;
-  --color-primary-hover:  #3a5ce5;
-  --color-primary-light:  #eef1fe;
+  /* Accent / Primary — Teal */
+  --color-primary:        #00897b;
+  --color-primary-hover:  #00695c;
+  --color-primary-light:  #e0f2f1;
 
   /* Error / Danger */
   --color-error:          #e53e3e;
@@ -37,42 +39,43 @@
   /* Success */
   --color-success:        #38a169;
 
-  /* Warning (storage banner) */
+  /* Warning */
   --color-warning:        #d69e2e;
   --color-warning-bg:     #fffbeb;
   --color-warning-border: #f6e05e;
 
   /* Category Colors */
   --color-cat-food:       #f6ad55;
-  --color-cat-transport:  #63b3ed;
-  --color-cat-fun:        #b794f4;
+  --color-cat-transport:  #4dd0e1;
+  --color-cat-fun:        #ce93d8;
 
-  /* Over-limit highlight */
+  /* Over-limit */
   --color-over-limit-bg:     #fff5f5;
   --color-over-limit-border: #fc8181;
   --color-over-limit-text:   #c53030;
 
-  /* Balance display */
-  --color-balance-amount: #4a6cf7;
+  /* Balance */
+  --color-balance-amount: #00897b;
 
   /* Spacing & Radius */
-  --radius-sm:  6px;
-  --radius-md:  10px;
-  --radius-lg:  16px;
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
-  --spacing-xl: 32px;
+  --spacing-xl: 36px;
 
   /* Typography */
-  --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-size-xs:  12px;
-  --font-size-sm:  14px;
-  --font-size-md:  16px;
-  --font-size-lg:  20px;
-  --font-size-xl:  28px;
-  --font-size-2xl: 36px;
+  --font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-size-xs:  11px;
+  --font-size-sm:  13px;
+  --font-size-md:  15px;
+  --font-size-lg:  18px;
+  --font-size-xl:  26px;
+  --font-size-2xl: 38px;
 
   /* Transitions */
   --transition-fast:   background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
@@ -81,25 +84,25 @@
 
 /* ── 2. Dark Mode Overrides ─────────────────────────────────── */
 body.dark {
-  --color-text-primary:   #e8eaf0;
-  --color-text-secondary: #a0aab8;
-  --color-text-muted:     #6b7585;
-  --color-text-inverse:   #1a1a2e;
+  --color-text-primary:   #e2f0ee;
+  --color-text-secondary: #90b8b2;
+  --color-text-muted:     #5a8a82;
+  --color-text-inverse:   #0f2027;
 
-  --color-bg-page:        #12131f;
-  --color-bg-card:        #1e2030;
-  --color-bg-input:       #252840;
-  --color-bg-item:        #252840;
-  --color-bg-item-hover:  #2e3150;
+  --color-bg-page:        #0d1f1c;
+  --color-bg-card:        #132420;
+  --color-bg-input:       #1a302c;
+  --color-bg-item:        #1a302c;
+  --color-bg-item-hover:  #1f3a35;
 
-  --color-border:         #353858;
-  --color-border-focus:   #6b8aff;
-  --color-shadow:         rgba(0, 0, 0, 0.4);
-  --color-shadow-card:    0 4px 20px rgba(0, 0, 0, 0.4);
+  --color-border:         #2a4a44;
+  --color-border-focus:   #4db6ac;
+  --color-shadow:         rgba(0, 0, 0, 0.5);
+  --color-shadow-card:    0 4px 24px rgba(0, 0, 0, 0.4);
 
-  --color-primary:        #6b8aff;
-  --color-primary-hover:  #5a78f0;
-  --color-primary-light:  #1e2540;
+  --color-primary:        #4db6ac;
+  --color-primary-hover:  #26a69a;
+  --color-primary-light:  #1a3530;
 
   --color-error:          #fc8181;
   --color-error-bg:       #2d1515;
@@ -113,7 +116,7 @@ body.dark {
   --color-over-limit-border: #e53e3e;
   --color-over-limit-text:   #fc8181;
 
-  --color-balance-amount: #6b8aff;
+  --color-balance-amount: #4db6ac;
 }
 
 /* ── 3. Reset & Base ────────────────────────────────────────── */
@@ -135,9 +138,18 @@ body {
   font-size: var(--font-size-md);
   color: var(--color-text-primary);
   background-color: var(--color-bg-page);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(0, 137, 123, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(0, 137, 123, 0.06) 0%, transparent 60%);
   line-height: 1.6;
   min-height: 100vh;
   transition: var(--transition-normal);
+}
+
+body.dark {
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(77, 182, 172, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(77, 182, 172, 0.04) 0%, transparent 60%);
 }
 
 /* ── 4. Storage Warning Banner ──────────────────────────────── */
@@ -169,7 +181,7 @@ header,
 main,
 section {
   width: 100%;
-  max-width: 560px;
+  max-width: 580px;
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--spacing-md);
@@ -177,7 +189,7 @@ section {
 }
 
 header {
-  padding-top: var(--spacing-lg);
+  padding-top: var(--spacing-xl);
   padding-bottom: var(--spacing-md);
 }
 
@@ -199,11 +211,37 @@ header[role="banner"] {
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
-  background-color: var(--color-bg-card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--color-shadow-card);
-  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px rgba(0, 137, 123, 0.25);
+  padding: var(--spacing-xl) var(--spacing-lg);
   transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+header[role="banner"]::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+header[role="banner"]::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: 30%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 /* Balance Display */
@@ -215,49 +253,77 @@ header[role="banner"] {
 }
 
 #balance-display h1 {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   margin-bottom: var(--spacing-xs);
 }
 
 #balance-amount {
   font-size: var(--font-size-2xl);
-  font-weight: 700;
-  color: var(--color-balance-amount);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   transition: var(--transition-fast);
 }
 
-/* ── 7. Theme Toggle Button ─────────────────────────────────── */
-#theme-toggle {
+#user-greeting {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: var(--spacing-xs);
+  min-height: 1.4em;
+}
+
+/* ── 7. Header Action Buttons ───────────────────────────────── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+#theme-toggle,
+#edit-username-btn {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
   padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-bg-item);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
+  background-color: rgba(255,255,255,0.15);
+  color: #ffffff;
+  border: 1.5px solid rgba(255,255,255,0.3);
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-weight: 600;
+  font-family: var(--font-family);
   cursor: pointer;
   transition: var(--transition-fast);
   white-space: nowrap;
+  backdrop-filter: blur(4px);
 }
 
-#theme-toggle:hover {
-  background-color: var(--color-bg-item-hover);
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+#edit-username-btn {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
 }
 
-#theme-toggle:focus-visible {
-  outline: 2px solid var(--color-border-focus);
+#theme-toggle:hover,
+#edit-username-btn:hover {
+  background-color: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.5);
+}
+
+#theme-toggle:focus-visible,
+#edit-username-btn:focus-visible {
+  outline: 2px solid #ffffff;
   outline-offset: 2px;
 }
 
@@ -268,6 +334,7 @@ body > section {
   border-radius: var(--radius-lg);
   box-shadow: var(--color-shadow-card);
   padding: var(--spacing-lg);
+  border: 1px solid var(--color-border);
   transition: var(--transition-normal);
 }
 
@@ -278,7 +345,21 @@ body > section h2 {
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-md);
   padding-bottom: var(--spacing-sm);
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+main > section h2::before,
+body > section h2::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-hover));
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
 /* ── 9. Form Groups ─────────────────────────────────────────── */
@@ -300,7 +381,7 @@ input[type="text"],
 input[type="number"],
 select {
   width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 10px var(--spacing-md);
   background-color: var(--color-bg-input);
   color: var(--color-text-primary);
   border: 1.5px solid var(--color-border);
@@ -322,12 +403,13 @@ input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus {
   border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 137, 123, 0.15);
+  background-color: var(--color-bg-card);
 }
 
 /* Custom select arrow */
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a94a6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300897b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--spacing-md) center;
   padding-right: calc(var(--spacing-md) * 2.5);
@@ -340,28 +422,33 @@ form button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-xs);
   width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-primary);
+  padding: 11px var(--spacing-md);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
   color: var(--color-text-inverse);
   border: none;
   border-radius: var(--radius-md);
   font-size: var(--font-size-md);
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--font-family);
   cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  transition: opacity 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
   margin-top: var(--spacing-sm);
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3);
+  letter-spacing: 0.01em;
 }
 
 button[type="submit"]:hover,
 form button:hover {
-  background-color: var(--color-primary-hover);
+  opacity: 0.92;
+  box-shadow: 0 6px 16px rgba(0, 137, 123, 0.4);
 }
 
 button[type="submit"]:active,
 form button:active {
   transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 137, 123, 0.2);
 }
 
 button[type="submit"]:focus-visible,
@@ -414,10 +501,9 @@ form button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  max-height: 320px;
+  max-height: 340px;
   overflow-y: auto;
   padding-right: var(--spacing-xs);
-  /* Custom scrollbar */
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
 }
@@ -444,18 +530,21 @@ form button:focus-visible {
   background-color: var(--color-bg-item);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
   transition: var(--transition-fast);
 }
 
 #transaction-list li:hover {
   background-color: var(--color-bg-item-hover);
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px var(--color-shadow);
 }
 
 /* Item name */
 .item-name {
   flex: 1;
   font-size: var(--font-size-md);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -466,51 +555,50 @@ form button:focus-visible {
 .item-amount {
   font-size: var(--font-size-md);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-primary);
   white-space: nowrap;
 }
 
 /* Category badge */
 .item-category {
   font-size: var(--font-size-xs);
-  font-weight: 600;
-  padding: 2px var(--spacing-sm);
+  font-weight: 700;
+  padding: 3px 10px;
   border-radius: 999px;
   background-color: var(--color-primary-light);
   color: var(--color-primary);
   white-space: nowrap;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
-/* Category-specific badge colors */
 .item-category[data-category="Food"] {
   background-color: rgba(246, 173, 85, 0.15);
-  color: var(--color-cat-food);
+  color: #c07a1a;
 }
 
 .item-category[data-category="Transport"] {
-  background-color: rgba(99, 179, 237, 0.15);
-  color: var(--color-cat-transport);
+  background-color: rgba(77, 208, 225, 0.15);
+  color: #0097a7;
 }
 
 .item-category[data-category="Fun"] {
-  background-color: rgba(183, 148, 244, 0.15);
-  color: var(--color-cat-fun);
+  background-color: rgba(206, 147, 216, 0.15);
+  color: #8e24aa;
 }
 
 /* Delete button inside list item */
 #transaction-list li button {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   margin: 0;
   background-color: transparent;
   color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md);
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition-fast);
@@ -524,6 +612,7 @@ form button:focus-visible {
   background-color: var(--color-error);
   color: #ffffff;
   border-color: var(--color-error);
+  transform: scale(1.1);
 }
 
 /* ── 15. Over-Limit Highlight ───────────────────────────────── */
@@ -555,11 +644,19 @@ form button:focus-visible {
   transition: var(--transition-normal);
 }
 
+#empty-state::before {
+  content: '🧾';
+  display: block;
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+  font-style: normal;
+}
+
 /* ── 17. Chart Container ────────────────────────────────────── */
 .chart-container {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   margin: 0 auto;
   aspect-ratio: 1 / 1;
   display: flex;
@@ -572,7 +669,6 @@ form button:focus-visible {
   max-height: 100%;
 }
 
-/* Chart placeholder / empty state text */
 .chart-container::after {
   content: attr(data-empty);
   position: absolute;
@@ -602,17 +698,26 @@ form button:focus-visible {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-sm);
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-radius: var(--radius-lg);
   }
 
   #balance-amount {
     font-size: var(--font-size-xl);
   }
 
-  #theme-toggle {
+  .header-actions {
     align-self: flex-end;
+  }
+
+  #theme-toggle {
     font-size: var(--font-size-xs);
     padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  #edit-username-btn {
+    width: 32px;
+    height: 32px;
   }
 
   main > section,
@@ -649,7 +754,7 @@ form button:focus-visible {
   }
 
   .chart-container {
-    max-width: 260px;
+    max-width: 240px;
   }
 }
 
@@ -682,29 +787,30 @@ form button:focus-visible {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
 }
 
 .modal-box {
   position: relative;
   background-color: var(--color-bg-card);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
   padding: var(--spacing-xl);
   width: 100%;
   max-width: 380px;
-  animation: modal-in 0.2s ease;
+  border: 1px solid var(--color-border);
+  animation: modal-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes modal-in {
-  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .modal-box h2 {
   font-size: var(--font-size-xl);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-xs);
 }
